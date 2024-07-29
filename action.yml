@@ -1,4 +1,4 @@
-name: Send HTTP Request
+name: Send HTTP Request - vercel
 description: Make an HTTP request to a URL
 
 branding:
