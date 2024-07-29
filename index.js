@@ -30,13 +30,15 @@ const main = async () => {
 
   info(`Inputs: ${toJson(inputs)}`);
 
+  const isNotGETorHEAD = inputs.method !== 'GET' && inputs.method !== 'HEAD';
+
   let remainingRetryCount = inputs.retryCount;
   while (true) {
     // Make the request
     const response = await fetch(inputs.url, {
       method: inputs.method,
       headers: inputs.headers,
-      body: inputs.body
+      body: isNotGETorHEAD ? inputs.body : undefined
     });
     const responseSuccess = response.status && response.status < 400;
 
