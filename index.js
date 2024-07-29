@@ -77,12 +77,20 @@ const main = async () => {
       body: responseBody
     };
 
+    // we need id to deploy the deployment to a customized host, if you don't need to, ignore this
+    let id = '';
+    try {
+      const parsedBody = JSON.parse(responseBody);
+      id = parsedBody.id;
+    } catch (ignored) {}
+
     info(`Outputs: ${toJson(outputs)}`);
 
     setOutput('status', outputs.status);
     setOutput('success', outputs.success);
     setOutput('headers', toJson(outputs.headers));
     setOutput('body', outputs.body);
+    setOutput('id', id);
 
     // Break out of the retry loop
     break;
