@@ -78,6 +78,8 @@ const main = async () => {
       info('Failed to parse response body as JSON:' + responseBody + ', reason:' + ignored);
     }
 
+    info(`id: ${id}`);
+
     // Set the outputs
     const outputs = {
       status: response.status,
@@ -86,8 +88,6 @@ const main = async () => {
       body: responseBody,
       id: id
     };
-
-    info(`Response: ${toJson(response)}`);
 
     setOutput('status', outputs.status);
     setOutput('success', outputs.success);
