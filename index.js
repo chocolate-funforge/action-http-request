@@ -82,7 +82,9 @@ const main = async () => {
     try {
       const parsedBody = JSON.parse(responseBody);
       id = parsedBody.id;
-    } catch (ignored) {}
+    } catch (ignored) {
+      console.warn('Failed to parse response body as JSON:', responseBody);
+    }
 
     info(`Outputs: ${toJson(outputs)}`);
 
