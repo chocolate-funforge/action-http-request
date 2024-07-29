@@ -69,14 +69,6 @@ const main = async () => {
     // Read the body
     const responseBody = await response.text();
 
-    // Set the outputs
-    const outputs = {
-      status: response.status,
-      success: responseSuccess,
-      headers: response.headers,
-      body: responseBody
-    };
-
     // we need id to deploy the deployment to a customized host, if you don't need to, ignore this
     let id = '';
     try {
@@ -86,7 +78,16 @@ const main = async () => {
       info('Failed to parse response body as JSON:' + responseBody + ', reason:' + ignored);
     }
 
-    info(`Outputs: ${toJson(outputs)}`);
+    // Set the outputs
+    const outputs = {
+      status: response.status,
+      success: responseSuccess,
+      headers: response.headers,
+      body: responseBody,
+      id: id
+    };
+
+    info(`Response: ${toJson(response)}`);
 
     setOutput('status', outputs.status);
     setOutput('success', outputs.success);
